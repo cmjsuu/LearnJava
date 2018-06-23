@@ -1,0 +1,88 @@
+/*
+Theme Name: 柚子皮主题
+Theme URI: http://www.yzipi.com
+
+Author: "卖砖头的小女孩"
+Author URI: ttp://www.yzipi.com
+
+Description:柚子皮主题是一款极简设计的主题，可适用博客，自媒体类网站，主题会持续升级，请大家多关于柚子皮。
+Version: 0.0001#container-page, .header-main, .hmFocus
+
+-------------------------------------------------------------- */
+
+@charset "utf-8";
+html {
+-webkit-text-size-adjust: none;
+}
+*{
+	margin: 0;
+	padding: 0;
+}
+ol, ul {
+	list-style: none;
+}
+img {
+	border: 0;
+	height: auto;
+	width: auto;
+}
+
+body {
+	font-family: "Microsoft YaHei", arial;
+	font-size: 17px;
+	background: white;
+	letter-spacing: 0.8px;
+	position:relative;
+	letter-spacing:1px;
+}
+a {
+	color: #3f3f3f;
+	font-size: 17px;
+	text-decoration: none;
+	transition: color 0.3s;
+}
+a:hover {
+	color: #d6623d;
+}
+::selection{background:#d6623d;color:#fff;}
+
+.clear {
+	clear: both;
+}
+img{display:block;}
+/*打赏*/
+.juanz {
+	width: 2px;
+	height: 550px;
+	background: #f1f1f1;
+	margin: 40px auto;
+}
+.juanz li {
+	width: 300px;
+	margin-bottom: 50px;
+	font-size: 16px;
+	height: 34px;
+	line-height: 34px;
+}
+.juanz li b {
+	background: #6fa40b;
+	color: #fff;
+	font-size: 14px;
+	width: 34px;
+	height: 34px;
+	border-radius: 50px;
+	display: inline-block;
+	text-align: center;border:5px solid #fff;
+}
+.juanz .left {
+	text-align: right;
+	margin-left: -278px;
+}
+.juanz .right {
+	margin-left: -22px;
+}
+
+.teach-recom{
+	font-size: 15px;
+	color: #d6623d;
+}

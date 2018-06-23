@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <display-name></display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+ 
+    <!-- index-->
+  <servlet>
+  	<servlet-name>index</servlet-name>
+  	<servlet-class>recombook.servlet.IndexServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>index</servlet-name>
+  	<url-pattern>/index</url-pattern>
+  </servlet-mapping>
+
+  
+  
+  <!-- 前台(foreground)用户注册、登陆、退出、信息的显示、修改等等用户相关 -->
+  <servlet>
+  	<servlet-name>user</servlet-name>
+  	<servlet-class>recombook.servlet.UserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>user</servlet-name>
+  	<url-pattern>*.user</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>book</servlet-name>
+  	<servlet-class>recombook.servlet.BookServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>book</servlet-name>
+  	<url-pattern>/book</url-pattern>
+  	<url-pattern>*.book</url-pattern>
+  </servlet-mapping>
+  
+ <jsp-config>
+ 	<taglib>  
+	<taglib-uri>http://mytag.sf.net</taglib-uri>  
+	<taglib-location>/WEB-INF/myTagLib.tld</taglib-location>  
+	</taglib>
+</jsp-config>
+  
+</web-app>
