@@ -1,0 +1,28 @@
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh004','长袖衬衫','卓京',20,100,'不是每一件衣服都是卓京舒适',SYSDATe,203,'2012发型师服装美发师时尚服装美发店工作服 班服情侣长袖衬衫.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh004','长袖衬衫男士','卓京',20,100,'不是每一件衣服都是卓京舒适',SYSDATe,203,'2012美发师工作服时尚服装衬衣顾小白吕子乔夜店卡宾长袖衬衫男士.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh004','长袖衬衫男士','卓京',20,100,'不是每一件衣服都是卓京舒适',SYSDATe,203,'2012美发师工作服时尚服装衬衣顾小白吕子乔夜店卡宾长袖衬衫男士.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh004','情侣衬衣','卓京',20,100,'不是每一件衣服都是卓京舒适',SYSDATe,203,'2012情侣衬衫 纯色工作服发型师服装男士纯棉长袖衬衫 情侣衬衣.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh004','上衣男寸衫','卓京',20,100,'不是每一件衣服都是卓京舒适',SYSDATe,203,'潮男秋装韩版男士黑色修身长袖衬衫男白色衬衣工作服装上衣男寸衫.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh004','男士长袖衬衣','卓京',20,100,'不是每一件衣服都是卓京舒适',SYSDATe,203,'樊肯商务衬衫 正装衬衫休闲 男士长袖衬衣修身工作服装丝滑 黑色.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh004','长袖衬衫男士','卓京',20,100,'不是每一件衣服都是卓京舒适',SYSDATe,203,'粉红色衬衫男长袖秋冬天韩版修身商务休闲新郎粉色衬衫西服装衬衣.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh004','韩版男士修身西服','卓京',20,100,'不是每一件衣服都是卓京舒适',SYSDATe,203,'韩版男士修身西服 浅灰色一扣平领小西装套装 结婚礼服装 职业装.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh004','长袖衬衫男士','卓京',20,100,'不是每一件衣服都是卓京舒适',SYSDATe,203,'韩版情侣服装修身情侣衬衣 男衫 休闲衫 连帽红色格子衬衫男长袖.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh004','时尚衬衫纯色','卓京',20,100,'不是每一件衣服都是卓京舒适',SYSDATe,203,'男士长袖日韩版发型师服装修身衬衫休闲 个性长袖 时尚衬衫纯色.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh004','休闲男衬衣','卓京',20,100,'不是每一件衣服都是卓京舒适',SYSDATe,203,'秋装新款潮流男士长袖衬衫时尚尖领纯色韩版修身休闲男衬衣男服装.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh004','长袖衬衫男士','卓京',20,100,'不是每一件衣服都是卓京舒适',SYSDATe,203,'时尚条纹装饰长袖个性男士衬衫修身衬衣美发型师时尚发廊工作服装.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh004','男士礼服','卓京',20,100,'不是每一件衣服都是卓京舒适',SYSDATe,203,'影楼西服男士礼服 西服 男士西装 舞台合唱服装 黑白色黄晓明同款.jpg');
+
+
+select *from es_goods where stid='bh004';

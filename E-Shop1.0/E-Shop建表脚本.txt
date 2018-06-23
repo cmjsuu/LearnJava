@@ -1,0 +1,168 @@
+/*==============================================================*/
+/* 删除表语句                                                   */
+/*==============================================================*/
+drop table es_message_board purge;
+drop table es_news purge;
+drop table es_order_detail purge;
+drop table es_order purge;
+drop table es_goods purge;
+drop table es_type purge;
+drop table es_user purge;
+
+
+
+/*==============================================================*/
+/* Table: 用户表                                                */
+/*==============================================================*/
+create table es_user 
+(
+    userid               varchar2(10)                   primary key,
+    uname                varchar2(20),
+    upassword            varchar2(20),
+    unickname            varchar2(20),
+    usex                 char(2),
+    ubirthday            date,
+    uaddress             varchar2(100),
+    utelephone           varchar2(20),
+    uemail               varchar2(40),
+    utime                date
+);
+
+/*==============================================================*/
+/* Table: 管理员表                                              */
+/*==============================================================*/
+create table es_manager 
+(
+    mid                  varchar2(10),
+    mname                varchar2(20),
+    mpassword            varchar2(20)
+);
+
+/*==============================================================*/
+/* Table: 商品类型表                                            */
+/*==============================================================*/
+create table es_type 
+(
+    stid                 varchar2(10)                   not null,
+    stname               varchar2(20),
+    mtname               varchar2(10),
+    constraint PK_ES_TYPE primary key (stid)
+);
+
+/*==============================================================*/
+/* Table: 商品表                                                */
+/*==============================================================*/
+create table es_goods 
+(
+    gid                  varchar2(10)                   not null,
+    stid                 varchar2(10),
+    gname                varchar2(20),
+    gtype                varchar2(10),
+    gbrand		 varchar2(20),
+    gprice               number,
+    gstock               number,
+    gdescribe            varchar2(200),
+    gsell_time           date,
+    gsales               number,
+    gurl		 varchar2(100),
+    constraint PK_ES_GOODS primary key (gid)
+);
+
+/*==============================================================*/
+/* Table: 商品评论表                                            */
+/*==============================================================*/
+create table es_goods_comment 
+(
+    userid               varchar2(10),
+    gid                  varchar2(10),
+    ccomment             varchar2(200),
+    ctime                date
+);
+
+/*==============================================================*/
+/* Table: 留言板                                                */
+/*==============================================================*/
+create table es_message_board 
+(
+    userid               varchar2(10),
+    mbid                 varchar2(20),
+    mbtitle              varchar2(40),
+    mbcontent            varchar2(400),
+    mbtime               date,
+    mbnickname           varchar2(20),
+    constraint PK_ES_MESSAGE_BOARD primary key (mbid)
+);
+
+/*==============================================================*/
+/* Table: 新闻表                                                */
+/*==============================================================*/
+create table es_news 
+(
+    userid               varchar2(10),
+    nid                  varchar2(20),
+    ntitle               varchar2(40),
+    ncontent             varchar2(400),
+    ntime                date,
+    constraint PK_ES_NEWS primary key (nid)
+);
+
+/*==============================================================*/
+/* Table: 订单表                                                */
+/*==============================================================*/
+create table es_order 
+(
+    oid                  varchar2(10)                   not null,
+    userid               varchar2(10),
+    otime                date,
+    ototalprice          number,
+    ostatus              number,
+    oaddress             varchar2(100),
+    otelephone           varchar2(20),
+    constraint PK_ES_ORDER primary key (oid)
+);
+
+/*==============================================================*/
+/* Table: 订单明细表                                            */
+/*==============================================================*/
+create table es_order_detail 
+(
+    oid                  varchar2(10),
+    gid                  varchar2(10),
+    gname                varchar2(20),
+    gnumber              number,
+    gprice               number,
+    gsubtotal            number
+);
+
+
+alter table es_goods
+   add constraint FK_ES_GOODS_REFERENCE_ES_TYPE foreign key (stid)
+      references es_type (stid);
+
+alter table es_message_board
+   add constraint FK_ES_MESSA_REFERENCE_ES_USER foreign key (userid)
+      references es_user (userid);
+
+alter table es_news
+   add constraint FK_ES_NEWS_REFERENCE_ES_USER foreign key (userid)
+      references es_user (userid);
+
+alter table es_order
+   add constraint FK_ES_ORDER_REFERENCE_ES_USER foreign key (userid)
+      references es_user (userid);
+
+alter table es_order_detail
+   add constraint FK_ES_ORDER_REFERENCE_ES_ORDER foreign key (oid)
+      references es_order (oid);
+
+alter table es_order_detail
+   add constraint FK_ES_ORDER_REFERENCE_ES_GOODS foreign key (gid)
+      references es_goods (gid);
+
+alter table es_goods_comment
+   add constraint FK_ES_GOODS_REFERENCE_ES_USER foreign key (userid)
+      references es_user (userid);
+
+alter table es_goods_comment
+   add constraint FK_ES_GOODS_REFERENCE_ES_GOODS foreign key (gid)
+      references es_goods (gid);

@@ -1,0 +1,17 @@
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh007','母婴包','三鹿',50,100,'不是每一包三鹿都能吃出结石',SYSDATe,203,'6折包邮！今生宝贝美绽放2012新款多功能妈咪包 妈妈包 母婴包021.jpg');
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh007','婴儿秋千摇椅','三鹿',50,100,'不是每一包三鹿都能吃出结石',SYSDATe,203,'Bright starts舒适摇椅 婴儿秋千摇椅.jpg');
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh007','宝宝豪华座','三鹿',50,100,'不是每一包三鹿都能吃出结石',SYSDATe,203,'好娃娃特大号新欧美儿童坐便器 宝宝豪华座.jpg');
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh007','三层防水','三鹿',50,100,'不是每一包三鹿都能吃出结石',SYSDATe,203,'卡通加厚口水巾宝宝围嘴婴儿围兜三层防水.jpg');
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh007','李宁母婴婴儿礼盒','三鹿',50,100,'不是每一包三鹿都能吃出结石',SYSDATe,203,'李宁母婴婴儿礼盒纯棉礼盒用品婴儿服新生儿礼盒婴儿套装秋冬衣服.jpg');
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh007','布朗博士奶瓶','三鹿',50,100,'不是每一包三鹿都能吃出结石',SYSDATe,203,'美国品牌布朗博士奶瓶 婴儿标准口防胀气玻璃奶瓶 新生儿母婴用品.jpg');
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh007','婴儿隔尿垫','三鹿',50,100,'不是每一包三鹿都能吃出结石',SYSDATe,203,'母婴用品婴儿隔尿垫 宝宝可洗纯棉防水尿垫床垫月经垫防漏隔尿.jpg');
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh007','婴儿床垫','三鹿',50,100,'不是每一包三鹿都能吃出结石',SYSDATe,203,'全国包邮贝适婴儿床垫纠正宝宝偏头吐奶打鼾.jpg');
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh007','加厚棉衣','三鹿',50,100,'不是每一包三鹿都能吃出结石',SYSDATe,203,'人之初3818新生儿礼盒婴儿满月礼盒幼儿宝宝秋冬加厚棉衣母婴用品.jpg');
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh007','玻璃奶瓶','三鹿',50,100,'不是每一包三鹿都能吃出结石',SYSDATe,203,'喜恩贝 玻璃奶瓶 婴儿自动吸管带手柄 硅胶抗菌奶嘴 母婴新生用品.jpg');
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh007','宝宝背袋','三鹿',50,100,'不是每一包三鹿都能吃出结石',SYSDATe,203,'限时89元包邮婴儿抱袋背巾背带宝宝背袋.jpg');
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh007','隔尿垫防水超大','三鹿',50,100,'不是每一包三鹿都能吃出结石',SYSDATe,203,'新生儿母婴用品 隔尿垫防水超大 婴儿隔尿垫 宝宝竹纤维防水可洗.jpg');
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh007','母婴包','三鹿',50,100,'不是每一包三鹿都能吃出结石',SYSDATe,203,'新生儿母婴用品 宽口径带手柄自动吸管 宝宝婴儿抗菌全硅胶奶瓶.jpg');
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh007','婴儿尿垫','三鹿',50,100,'不是每一包三鹿都能吃出结石',SYSDATe,203,'婴儿隔尿垫 婴儿尿垫 宝宝尿垫 大号防水纯棉超大 母婴新生儿用品.jpg');
+
+
+select *from es_goods where stid='bh007';

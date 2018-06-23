@@ -1,0 +1,28 @@
+create sequence goods_seq start with 024 increment by 1;
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh005','水晶立体墙贴','卓京',20,100,'不是每一滴牛奶都叫苏伦特',SYSDATe,203,'包邮！水晶立体墙贴S26飘香家居卧室客厅亚克力电视墙电视背景墙.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh005','家居装饰立体墙贴','卓京',20,100,'不是每一滴牛奶都叫苏伦特',SYSDATe,203,'创意家居装饰 立体墙贴 不锈钢镜面墙贴 抽象 长尾蝶 会飞的墙贴.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh005','客厅电视墙墙贴','卓京',20,100,'不是每一滴牛奶都叫苏伦特',SYSDATe,203,'家居饰品 黄昏回家 客厅电视墙墙贴 卧室床头背景贴纸 小七墙贴.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh005','家居饰品','卓京',20,100,'不是每一滴牛奶都叫苏伦特',SYSDATe,203,'结婚礼物 家居饰品 工艺品 摆件 实用 婚庆礼品 创意 装饰品MC033.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh005','精品象牙瓷笔筒','卓京',20,100,'不是每一滴牛奶都叫苏伦特',SYSDATe,203,'精品象牙瓷笔筒 景德镇陶瓷工艺品 家居装饰品摆件 缕空花纹笔筒2.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh005','卧室客厅沙发背景墙贴','卓京',20,100,'不是每一滴牛奶都叫苏伦特',SYSDATe,203,'满30包邮墙壁贴纸卧室客厅沙发背景墙贴纸家居装饰画贴画爱心之恋.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh005','时尚新房摆件','卓京',20,100,'不是每一滴牛奶都叫苏伦特',SYSDATe,203,'欧式陶艺工艺品柱形发财树 简约家居装饰品摆设 时尚新房摆件.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh005','墙面贴纸','卓京',20,100,'不是每一滴牛奶都叫苏伦特',SYSDATe,203,'墙面贴纸 婚庆墙贴婚房布置创意家居贴花房间装饰墙贴 紫色蒲公英.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh005','时尚创意家居饰品摆件','卓京',20,100,'不是每一滴牛奶都叫苏伦特',SYSDATe,203,'热卖 欧式复古 铁艺红酒架 古铜色葡萄酒架 时尚创意家居饰品摆件.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh005','特价鹿时尚家居饰','卓京',20,100,'不是每一滴牛奶都叫苏伦特',SYSDATe,203,'特价鹿时尚家居饰品树脂工艺品摆设欧式家装饰品摆件婚庆新婚礼品.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh005','家居家饰工艺摆件','卓京',20,100,'不是每一滴牛奶都叫苏伦特',SYSDATe,203,'田园风格 家居家饰工艺摆件送礼品 小号长耳米菲兔 树脂吊脚娃娃.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh005','金属工艺摆设','卓京',20,100,'不是每一滴牛奶都叫苏伦特',SYSDATe,203,'铁质三轮模型 金属工艺摆设 简约现代 铁质 家居装饰品 摆件 其它.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh005','家居装饰品','卓京',20,100,'不是每一滴牛奶都叫苏伦特',SYSDATe,203,'新款招财辟邪 开光貔貅摆件大号 家居装饰品 工艺品摆设 开业礼品.jpg');
+
+select *from es_goods where stid='bh005';

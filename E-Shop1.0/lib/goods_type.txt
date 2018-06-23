@@ -1,0 +1,732 @@
+
+/*
+    es_user序列
+ */
+CREATE SEQUENCE user_seq
+  MINVALUE 100
+  MAXVALUE 9999999
+  INCREMENT BY 1
+  NOCYCLE 
+  CACHE 20;
+  
+/*==============================================================*/
+/* Table: 用户表                                                */
+/*==============================================================*/
+create table es_user 
+(
+    userid               varchar2(10)                   primary key,
+    uname                varchar2(20),
+    upassword            varchar2(20),
+    unickname            varchar2(20),
+    usex                 char(2),
+    ubirthday            DATE,
+    uaddress             varchar2(100),
+    utelephone           varchar2(20),
+    uemail               varchar2(40),
+    utime                DATE,            --用户登陆时间
+    uStatus              NUMBER 
+);
+COMMIT;
+SELECT * FROM es_user;
+DELETE FROM es_user WHERE userid='104';
+
+INSERT INTO es_user(userid,uname,upassword,unickname,usex,ubirthday,uaddress,utelephone,uemail,utime,uStatus)  
+ VALUES('001','张三','123','小三','男',to_date('19890909','yyyy-mm-dd'),'长沙天心区','11111','124@qq.com',SYSDATE,1);
+
+INSERT INTO es_user(userid,uname,upassword,unickname,usex,ubirthday,uaddress,utelephone,uemail,utime,uStatus)  
+ VALUES('002','李四','123','小四','女',to_date('19890909','yyyy-mm-dd'),'长沙芙蓉区','222222','124@qq.com',SYSDATE,1);
+/*==============================================================*/
+/* Table: "es_type"  商品类型表                                       */
+/*==============================================================*/
+create table es_type 
+(
+    stid                 varchar2(10)   primary key,
+    stname               varchar2(20),
+    mtname               varchar2(10)
+    
+);
+DROP TABLE es_type;
+DROP TABLE es_goods;
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('b001','图书','图书音像');
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('b002','音乐','图书音像');
+
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('bh003','运动健康','百货');
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('bh004','服装','百货');
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('bh005','家居','百货');
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('bh006','美妆','百货');
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('bh007','母婴','百货');
+ INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('bh008','食品','百货');
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('bh009','手机数码','百货');
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('bh010','家居首饰','百货');
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('bh011','手表饰品','百货');
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('bh012','鞋包','百货');
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('bh013','家电','百货');
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('bh014','电脑办公','百货');
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('bh015','玩具文具','百货');
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('bh016','汽车用品','百货');
+ SELECT * FROM es_type;
+ COMMIT;
+/*==============================================================*/
+/* Table: "es_goods"   商品信息表                                      */
+/*==============================================================*/
+DROP TABLE es_goods;
+
+ 
+  --商品类型
+create table es_goods 
+(
+    gid                  varchar2(10)   PRIMARY KEY,
+    stid                 varchar2(10),  --类型编号
+    gname                varchar2(20),                                        
+    gbrand		           varchar2(20),  --品牌
+    gprice               number(10),
+    gstock               NUMBER(10),       --库存
+    gdescribe            varchar2(200),  --描述
+    gsell_time           DATE,           --上市时间
+    gsales               number(10),        --销量
+    gurl		             varchar2(100)  --图片路径
+);
+/*==============================================================*/
+/* Table: 订单表                                                */
+/*==============================================================*/
+CREATE SEQUENCE seq_order
+  MINVALUE 100
+  MAXVALUE 9999999
+  INCREMENT BY 1
+  NOCYCLE 
+  CACHE 20;
+DROP SEQUENCE seq_order;
+create table es_order 
+(
+    oid                  varchar2(10) PRIMARY KEY,
+    userid               varchar2(10),
+    otime                date,
+    ototalprice          number,
+    ostatus              number,
+    oaddress             varchar2(100),
+    otelephone           varchar2(20)
+    
+);
+INSERT INTO es_order 
+ VALUES(seq_order.nextval,'002',SYSDATE,1000,1,'长沙天心区','222222');
+ 
+INSERT INTO es_order 
+ VALUES(seq_order.nextval,'001',SYSDATE,500,2,'长沙火车站','99999');
+ 
+INSERT INTO es_order 
+ VALUES(seq_order.nextval,'002',SYSDATE,500,2,'长沙天马山','1111');
+ 
+INSERT INTO es_order 
+ VALUES(seq_order.nextval,'001',SYSDATE,500,2,'长沙芙蓉区','66666');
+ 
+INSERT INTO es_order 
+ VALUES(seq_order.nextval,'001',SYSDATE,100,2,'长沙南站','55555');
+ 
+INSERT INTO es_order 
+ VALUES(seq_order.nextval,'002',SYSDATE,200,2,'长沙市中心','1000000');
+ 
+SELECT * FROM es_order;
+DELETE FROM es_order where oid='101';
+DROP TABLE es_order;
+UPDATE es_order SET otelephone='33333' WHERE OID='120';
+select oid from es_order where userid='101';
+select o.oid,u.uname,o.ostatus,o.oaddress 
+ FROM es_order o,es_user u where oid='120' and u.uname='张三' and o.userid = u.userid;
+/*==============================================================*/
+/* Table: 订单明细表                                            */
+/*==============================================================*/
+create table es_order_detail 
+(
+    oid                  varchar2(10),
+    gid                  varchar2(10),
+    gname                varchar2(20),
+    gnumber              number,
+    gprice               number,
+    gsubtotal            number
+);
+DELETE FROM es_order_detail;
+DROP TABLE es_order_detail;
+SELECT * FROM es_order_detail;
+ALTER TABLE es_goods ADD CONSTRAINT uq_idstock CHECK(gstock>0);
+SELECT * FROM es_goods;
+DELETE FROM es_goods;
+
+alter table es_goods
+   add constraint FK_ES_GOODS_REFERENCE_ES_TYPE foreign key (stid)
+      references es_type (stid);
+      
+alter table es_order
+   add constraint FK_ES_ORDER_REFERENCE_ES_USER foreign key (userid)
+      references es_user (userid);
+      
+alter table es_order_detail
+   add constraint FK_ES_ORDER_REFERENCE_ES_ORDER foreign key (oid)
+      references es_order (oid);
+      
+alter table es_order_detail
+   add constraint FK_ES_ORDER_REFERENCE_ES_GOODS foreign key (gid)
+      references es_goods (gid);
+select oid,userid,otime,ototalprice,ostatus,oaddress,otelephone FROM es_order where oid='101';     
+SELECT * FROM es_order WHERE OID='';     
+SELECT o.oid,u.uname,o.oaddress,o.ostatus FROM es_user u,es_order o WHERE u.userid = o.userid;
+SELECT * FROM es_goods;
+select a.* from 
+  (select t.*,rownum as rowNumber from 
+     (SELECT o.oid,u.uname,o.oaddress,o.ostatus FROM es_user u,es_order o WHERE u.userid = o.userid) 
+     t where rownum <= 3) 
+ a where a.rowNumber >= 1;
+COMMIT;     
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g001','b001','人生','无',20,200,'这是一本好看的书',to_date('20120404','yyyy-mm-dd'),100,'books/人生.jpg');
+UPDATE es_goods SET gprice=50,gsales=600 WHERE gid='g001';
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g002','b001','谁在谋杀中国经济','无',20,500,'这是一本好书',to_date('20120404','yyyy-mm-dd'),100,'books/谁在谋杀中国经济.jpg');
+   
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g003','b001','恋之风华','无',20,2000,'这是一本好书',to_date('20120404','yyyy-mm-dd'),100,'books/恋之风华.jpg');
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g004','b001','皇帝与柠檬','无',20,500,'这是一本好书',to_date('20120404','yyyy-mm-dd'),100,'books/皇帝与柠檬.jpg');
+   
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g005','b001','江湖','无',20,2000,'这是一本好书',to_date('20120404','yyyy-mm-dd'),100,'books/江湖.jpg');
+   
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g006','b001','我们的杜拉拉','无',20,1000,'这是一本好书',to_date('20120404','yyyy-mm-dd'),100,'books/我们的杜拉拉.jpg');
+   
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g007','b001','车主省钱...','无',20,1000,'这是一本好书',to_date('20120404','yyyy-mm-dd'),100,'books/车主省钱.jpg');
+   
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g008','b001','走进云计算','无',20,1000,'这是一本好书',to_date('20120404','yyyy-mm-dd'),100,'books/走进云计算.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g009','b001','网络配置与应用','',50,1000,'这是一本好书',to_date('20120404','yyyy-mm-dd'),100,'books/网络配置与应用.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g0010','b001','网络控制技术','无',40,1000,'这是一本好书',to_date('20120404','yyyy-mm-dd'),100,'books/网络控制技术.jpg');
+ 
+
+ 
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g012','b001','MP4','爱国者',299,100,'音质好',to_date('20120404','yyyy-mm-dd'),100,'9.jpg');
+  
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g021','bh003','篮球','',100,1000,'质量好',to_date('20120404','yyyy-mm-dd'),100,'zjyjs.jpg');
+  
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g022','bh004','时尚牛仔裤','法姿韩版',200,1000,'物美价廉',to_date('20120404','yyyy-mm-dd'),100,'5.jpg');
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g035','bh004','男式风衣','法姿韩版',200,1000,'物美价廉',to_date('20120404','yyyy-mm-dd'),100,'miaosha6.jpg');
+ 
+ INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g037','bh004','女式冬衣','法姿韩版',200,1000,'物美价廉',to_date('20120404','yyyy-mm-dd'),100,'jiaodiantu.gif');
+  
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g023','bh005','乐扣保鲜盒','乐扣',200,10,'物美价廉',to_date('20120404','yyyy-mm-dd'),100,'2.jpg');
+   
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g024','bh006','欧珀莱均衡保湿四件套','欧珀莱',200,100,'物美价廉',to_date('20120404','yyyy-mm-dd'),100,'3.jpg');   
+   
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g025','bh007','奶粉','多美滋',50,1000,'物美价廉',to_date('20120404','yyyy-mm-dd'),100,'10.jpg');   
+   
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g026','bh008','法国德菲丝巧克力','法国德菲丝',20,1000,'物美价廉',to_date('20120404','yyyy-mm-dd'),100,'foods.files/巧克力.jpg');   
+  
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g034','bh009','笔记本电脑','联想',4000,20,'物美价廉',to_date('20120404','yyyy-mm-dd'),100,'4.jpg');  
+  
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g027','bh010','水晶吊坠','施华洛世奇',1000,100,'物美价廉',to_date('20120404','yyyy-mm-dd'),100,'6.jpg');  
+  
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g028','bh011','劳力士手表','',20000,10,'物美价廉',to_date('20120404','yyyy-mm-dd'),100,'zjyjs.jpg');  
+DELETE FROM es_goods WHERE gid = 'g028';
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g029','bh012','拉杆箱','达派',20,300,'物美价廉',to_date('20120404','yyyy-mm-dd'),100,'8.jpg');
+  
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g030','bh013','电饼铛','利仁',20,100,'物美价廉',to_date('20120404','yyyy-mm-dd'),100,'7.jpg');  
+  
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g031','bh014','笔记本电脑','华硕',3000,30,'物美价廉',to_date('20120404','yyyy-mm-dd'),100,'demo6.jpg');    
+  
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g032','bh015','娃娃','',200,1000,'物美价廉',to_date('20120404','yyyy-mm-dd'),100,'miaosha4.gif');    
+  
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g033','bh016','轿车','大众',200000,20,'物美价廉',to_date('20120404','yyyy-mm-dd'),100,'zjyjs.jpg');  
+  
+DELETE FROM es_goods WHERE gid='g004';
+SELECT * FROM es_goods;
+UPDATE es_goods SET gurl='goods.files/宾格瑞香蕉味牛奶.jpg' WHERE gid='g011';
+SELECT gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl FROM es_goods;
+SELECT gid,gname,t.stname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl 
+FROM es_goods g ,es_type t WHERE g.stid='b001' AND g.stid = t.stid;
+COMMIT;
+--食品
+SELECT * FROM es_goods WHERE stid='bh009';
+SELECT * FROM es_goods;
+DELETE FROM es_goods WHERE gid='g028';
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) 
+VALUES('g011','bh008','宾格瑞香蕉味牛奶','宾格瑞',300,200,'营养好喝',
+to_date('20120704','yyyy-mm-dd'),100,'foods.files/宾格瑞香蕉味牛奶.jpg'); 
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) 
+VALUES('g033','bh008','花草茶','东艺',200,200,'好茶',
+to_date('20120404','yyyy-mm-dd'),100,'foods.files/东艺花草茶.jpg');  
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g035','bh008','莫斯利安酸牛奶 ','光明 莫斯利安',200,200,'钻石装',to_date('20120404','yyyy-mm-dd'),100,'foods.files/莫斯利安酸牛奶.jpg'); 
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g012','bh008','左旋肉碱 ','康比特',200,200,'钻石装',to_date('20120404','yyyy-mm-dd'),100,'foods.files/康比特左旋肉碱.jpg'); 
+  
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES( 'g014','bh008','秋茶正山红茶','正山',200,200,'500克礼盒装',to_date('20120404','yyyy-mm-dd'),100,'foods.files/秋茶正山小种红茶2012新茶.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g015','bh008','越南中原G7咖啡','越南中原',200,200,'原装正品',to_date('20120404','yyyy-mm-dd'),
+ 100,'foods.files/越南中原G7咖啡.jpg');
+ 
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g016','bh008','铁观音特级浓香茶','铁观音',200,200,'特级浓香',to_date('20120404','yyyy-mm-dd'),
+ 100,'foods.files/铁观音.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g017','bh008','血尔补血口服液','血尔',200,200,'补血',to_date('20120404','yyyy-mm-dd'),
+ 100,'foods.files/血尔补血口服液.jpg');
+ 
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g018','bh008','儿童型营养高钙冲剂','天狮',200,200,'营养高钙',to_date('20120404','yyyy-mm-dd'),
+ 100,'foods.files/天狮儿童型营养高钙冲剂.jpg');
+delete from es_goods where gid='g013';
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g019','bh008','铁观音特级浓香茶','铁观音',200,200,'特级浓香',to_date('20120404','yyyy-mm-dd'),
+ 100,'foods.files/铁观音.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g021','bh008','四川西昌凉山荞麦茶','醉花茗',200,200,'全胚芽苦荞香茶',to_date('20120404','yyyy-mm-dd'),
+ 100,'foods.files/四川西昌凉山荞麦茶.jpg');
+ 
+delete  from es_goods where gid='g020';
+
+--电脑办公
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g110','bh014','惠普HP816墨盒 ','惠普HP816',200,200,'适用HP816,817',to_date('20120404','yyyy-mm-dd'),
+ 100,'computerwork.files/惠普HP816墨盒.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g111','bh014','打价机 ','惠普',200,200,'超好用打码机',to_date('20120404','yyyy-mm-dd'),
+ 100,'computerwork.files/超好用打价机.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g112','bh014','顶然A-2000A扫描枪','顶然',86,200,'条码枪',to_date('20120404','yyyy-mm-dd'),
+ 100,'computerwork.files/顶然A-2000A扫描枪.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g113','bh014','DVD空白刻录光盘','飞利浦',100,200,'DVD-R 16X 4.7G DVD刻录盘',to_date('20120404','yyyy-mm-dd'),
+ 100,'computerwork.files/飞利浦DVD空白刻录光盘.jpg');
+ delete from es_goods where gid='g113';
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g114','bh014','绘威易加粉硒鼓','绘威惠普HP88A',200,200,'HP88A硒鼓',to_date('20120404','yyyy-mm-dd'),
+ 100,'computerwork.files/绘威易加粉惠普HP88A硒鼓.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g115','bh014','9800C银行专用点钞机 ','融得利',200,200,'全智能验钞机',to_date('20120404','yyyy-mm-dd'),
+ 100,'computerwork.files/融得利9800C银行专用点钞机.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g116','bh014','戴尔笔记本电脑 ','戴尔',4889,20,'4G内存500G硬盘1G显卡性价比高',to_date('20120404','yyyy-mm-dd'),
+ 100,'computerwork.files/戴尔笔记本电脑.jpg');
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g117','bh014','佳能pg-815墨盒','佳能',815,20,'原装正品',to_date('20120404','yyyy-mm-dd'),
+ 100,'computerwork.files/佳能pg-815墨盒.jpg');
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g118','bh014','维融小型智能验钞机','维融',135,20,'便携式589改进版',to_date('20120404','yyyy-mm-dd'),
+ 100,'computerwork.files/维融小型智能验钞机.jpg');
+
+--手机数码
+commit;
+select * from es_goods where stid='bh009';
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g022','bh009','希捷1TB移动硬盘','希捷BackupPlus',200,200,'新睿品1TB',to_date('20120404','yyyy-mm-dd'),
+ 100,'phone_numeral.files/希捷移动硬盘1t.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g023','bh009','德浦高清数码相机','万德浦',200,200,'1500万像素高清数码DC-K10',to_date('20120404','yyyy-mm-dd'),
+ 100,'phone_numeral.files/德浦高清数码相机.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g024','bh009','GZ-E265BAC摄像机 ','JVC杰伟世',200,200,'送原电池 16G',to_date('20120404','yyyy-mm-dd'),
+ 100,'phone_numeral.files/GZ-E265BAC摄像机.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g025','bh009','漫步者笔记本电脑音箱','漫步者R101V ',200,200,'多媒体迷你小音响 2.1...',to_date('20120504','yyyy-mm-dd'),
+ 100,'phone_numeral.files/漫步者笔记本电脑音箱.jpg');
+delete from es_goods where gid='g025';
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g029','bh009','本唯B1电脑小音箱','本唯B1',200,200,'迷你便携！台式和笔记本都可用',to_date('20120504','yyyy-mm-dd'),
+ 10,'phone_numeral.files/本唯B1电脑小音箱.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g027','bh009','42寸广告机','苹果',200,200,'无线wifi 网络发布系统',to_date('20120704','yyyy-mm-dd'),
+ 100,'phone_numeral.files/42寸广告机.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g028','bh009','德浦高清数码相机','德浦',200,200,'特价秒杀1400万像素,DC进口行货',to_date('20120804','yyyy-mm-dd'),
+ 10,'phone_numeral.files/德浦高清数码相机.jpg');
+ delete from es_goods where gid ='g028';
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g031','bh009','长焦数码相机','Canon佳能',200,200,'正品特价Canon PowerShot A4000 IS',to_date('20120804','yyyy-mm-dd'),
+ 10,'phone_numeral.files/长焦数码相机.jpg');
+ 
+ INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g028','bh009','1400万像素数码相机','Canon佳能',200,200,'正品Canon特价',to_date('20120804','yyyy-mm-dd'),
+ 10,'phone_numeral.files/1400万像素高清数码相机.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g030','bh009','DV-V9高清数码摄像机','欧达',200,200,'正品行货便携式数码摄像机',to_date('20120804','yyyy-mm-dd'),
+ 10,'phone_numeral.files/DV-V9高清数码摄像机.jpg');
+ 
+--手表
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g034','bh011','奥迪斯学生电子手表','奥迪斯',200,200,'方形儿童运动表',to_date('20120804','yyyy-mm-dd'),
+ 10,'watch.files/奥迪斯学生电子手表.jpg');
+ delete from es_goods where gid='g034';
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g036','bh011','水钻皮带女表','百纳海',200,200,'品牌特卖 韩国石英 ',to_date('20120804','yyyy-mm-dd'),
+ 10,'watch.files/水钻皮带女表.jpg');
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g037','bh011','瑞士自动机械表','瑞士BINGER宾格',200,200,'男士手表精钢商务腕表',to_date('20120804','yyyy-mm-dd'),
+ 10,'watch.files/瑞士自动机械表.jpg');
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g038','bh011','正港KIMIO石英表','正港KIMIO',200,200,'韩版时尚手表',to_date('20120804','yyyy-mm-dd'),
+ 10,'watch.files/正港KIMIO石英表.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g039','bh011','正港ZGO石英表','正港ZGO',200,200,'时尚糖果色 水钻果冻表',to_date('20120804','yyyy-mm-dd'),
+ 10,'watch.files/正港ZGO石英表.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g040','bh011','威龙wilon镂空男表','威龙wilon',200,200,'正品 韩版男士手表',to_date('20120804','yyyy-mm-dd'),
+ 10,'watch.files/威龙wilon镂空男表.jpg');
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g041','bh011','智威EYKI石英表','智威',200,200,'韩国时尚 男士手表 皮带时装表',to_date('20120804','yyyy-mm-dd'),
+ 10,'watch.files/智威EYKI石英表.jpg');
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g042','bh011','迪士尼儿童手表','迪士尼',200,200,'迪士尼手表女表 ',to_date('20120804','yyyy-mm-dd'),
+ 10,'watch.files/迪士尼儿童手表.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g043','bh011','陶瓷男士手表 ','欧顿',200,200,'白色情侣手表 ',to_date('20120804','yyyy-mm-dd'),
+ 10,'watch.files/欧顿男士手表.jpg');
+ delete from es_goods where gid='g043';
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g044','bh011','ots男童运动手表 ','奥迪斯',200,200,'防水登山表 学生表 电子表 ',to_date('20120804','yyyy-mm-dd'),
+ 10,'watch.files/ots男童运动手表.jpg');
+select * from es_goods;
+commit;
+--鞋包
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g045','bh012','艾斯臣冬靴','艾斯臣',200,200,'雪地靴 5815高筒靴女靴',to_date('20120804','yyyy-mm-dd'),
+ 10,'shoes.files/艾斯臣冬靴.jpg');
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g046','bh012','利达妮情侣棉拖鞋','利达妮',200,200,'正品居家拖鞋',to_date('20120804','yyyy-mm-dd'),
+ 10,'shoes.files/利达妮情侣棉拖鞋.jpg');
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g047','bh012','蓓尔韩版厚底松糕鞋','蓓尔',200,200,'系带高帮布鞋子休闲鞋 ...',to_date('20120804','yyyy-mm-dd'),
+ 10,'shoes.files/蓓尔韩版厚底松糕鞋.jpg');
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g048','bh012','富尔康新款系带帆布鞋','富尔康',200,200,'韩版 厚底松糕鞋 布鞋 ',to_date('20120804','yyyy-mm-dd'),
+ 10,'shoes.files/富尔康新款低帮系带帆布鞋.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g049','bh012','潮流英伦休闲鞋 ','英伦',200,200,'秋冬新款韩版男士板鞋',to_date('20120804','yyyy-mm-dd'),
+ 10,'shoes.files/潮流英伦休闲鞋.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g050','bh012','李宁舒适男鞋韩版','李宁',200,200,'韩版秋冬新款时尚潮流男士板鞋',to_date('20120804','yyyy-mm-dd'),
+ 10,'shoes.files/李宁舒适男鞋.jpg');
+
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g051','bh012','安踏舒适男鞋 ','安踏',200,200,'春秋新款时尚潮流男士板鞋',to_date('20120804','yyyy-mm-dd'),
+ 10,'shoes.files/安踏舒适男鞋.jpg');
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g055','bh012','李宁运动休闲男鞋','李宁',200,200,'春秋情侣滑板鞋',to_date('20120804','yyyy-mm-dd'),
+ 10,'shoes.files/李宁运动休闲男鞋.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g052','bh012','潮流时尚休闲皮鞋','英伦',200,200,'秋冬新品韩版 板鞋',to_date('20120804','yyyy-mm-dd'),
+ 10,'shoes.files/潮流时尚休闲皮鞋.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g053','bh012','卓俪希女短靴','卓俪希',200,200,'厚底粗跟女鞋 马丁靴',to_date('20120804','yyyy-mm-dd'),
+ 10,'shoes.files/卓俪希女短靴.jpg');
+ 
+select * from es_goods;
+commit;
+
+--家电
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g056','bh013','海尔三门家用冰箱','Haier',2000,200,'家用',to_date('20120804','yyyy-mm-dd'),
+ 10,'homemachine.files/海尔BCD-206SM三门冰箱.jpg');
+ delete from es_goods where gid='g056';
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g057','bh013','美的小型电冰箱','Midea',1000,200,'BC-90M家用',to_date('20120804','yyyy-mm-dd'),
+ 10,'homemachine.files/美的小型电冰箱.jpg');
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g058','bh013','红心RH2035蒸汽挂烫机','上海红心',2000,200,'家用烫衣服',to_date('20120804','yyyy-mm-dd'),
+ 10,'homemachine.files/红心蒸汽挂烫机.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g059','bh013','富信电子带锁小冰箱','富信',2000,200,'电子带锁',to_date('20120804','yyyy-mm-dd'),
+ 10,'homemachine.files/富信电子带锁小冰箱.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g060','bh013','飞利浦CORD118电话机','飞利浦',2000,200,' 免提清晰 固定电话',to_date('20120804','yyyy-mm-dd'),
+ 10,'homemachine.files/飞利浦CORD118电话机.jpg');
+ delete from es_goods where gid='g060';
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g061','bh013','家用吸尘器D-928','小狗',2000,200,'除螨吸尘器',to_date('20120804','yyyy-mm-dd'),
+ 10,'homemachine.files/家用吸尘器.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g062','bh013','飞利浦卷发器','飞利浦',2000,200,'陶瓷釉控温加长卷发棒电卷棒',to_date('20120804','yyyy-mm-dd'),
+ 10,'homemachine.files/飞利浦卷发器.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g063','bh013','KF发廊专业电吹风机','康夫KF-5865',2000,200,'发廊专业造型电吹风机',to_date('20120804','yyyy-mm-dd'),
+ 10,'homemachine.files/康夫发廊专业电吹风机.jpg');
+ delete from es_goods where gid='g063';
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g064','bh013','飞科5201衣服脱毛器','飞科',2000,200,'脱毛机 剃毛球器',to_date('20120804','yyyy-mm-dd'),
+ 10,'homemachine.files/飞科5201脱毛器.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g065','bh013','康拜恩小型冰箱','康拜恩',2000,200,'家用冰箱BC-95 冷藏冷冻...',to_date('20120804','yyyy-mm-dd'),
+ 10,'homemachine.files/康拜恩小型冰箱.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g066','bh013','电动飞科剃须刀','飞科',2000,200,'磨砂面充电式',to_date('20120804','yyyy-mm-dd'),
+ 10,'homemachine.files/电动飞科剃须刀.jpg'); 
+commit; 
+
+--家居bh005
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g099','bh005','家用办公椅','乐活时光',2000,200,'【黑白调】电脑椅 转椅升降椅',to_date('20120804','yyyy-mm-dd'),
+ 10,'home.files/家用办公椅.jpg'); 
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g098','bh005',' 简易宜家衣柜','芝华仕',200,200,'简易衣柜 组装衣橱可折叠',to_date('20120804','yyyy-mm-dd'),
+ 10,'home.files/简易宜家衣柜.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g100','bh005','蓝漫加固型办公午睡床','蓝漫',2000,200,'特价加固型 沙滩床 午休床 折叠床 ',to_date('20120804','yyyy-mm-dd'),
+ 10,'home.files/蓝漫办公午睡床.jpg');
+  
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g101','bh005','家用台式电脑桌','蓝漫',2000,200,'买一送六 台式电脑桌',to_date('20120804','yyyy-mm-dd'),
+ 10,'home.files/家用台式电脑桌.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g102','bh005','雅兰名创-硬棕垫','雅兰名创',5000,20,'厚度可定做 椰棕床垫',to_date('20120804','yyyy-mm-dd'),
+ 60,'home.files/雅兰名创-硬棕垫.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g103','bh005','麦考林多功能挂衣架','麦考林',200,200,'买一送十 落地日式多用衣帽架',to_date('20120804','yyyy-mm-dd'),
+ 10,'home.files/麦考林多功能挂衣架.jpg');
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g104','bh005','冠达星防尘鞋柜','冠达星',1000,200,'正品简易鞋柜',to_date('20120804','yyyy-mm-dd'),
+ 10,'home.files/冠达星防尘鞋柜.jpg');
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g105','bh005','卧室客厅电视背景墙贴','芝华仕',400,200,'5折特价花藤',to_date('20120804','yyyy-mm-dd'),
+ 10,'home.files/卧室客厅电视背景墙贴.jpg');
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g106','bh005','欧式时尚创意家居饰品','欧式时尚',300,200,'陶瓷工艺品摆设 装饰摆件',to_date('20120804','yyyy-mm-dd'),
+ 10,'home.files/欧式时尚创意家居饰品.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g107','bh005','新婚装饰天鹅','欧式时尚',1000,200,' 欧式工艺品家居摆件 结婚礼品新婚装饰',to_date('20120804','yyyy-mm-dd'),
+ 10,'home.files/婚庆乔迁天鹅.jpg');
+ commit;
+ 
+--家居首饰bh010
+delete from es_goods  where gid='g067';
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g067','bh010','芝华仕真皮功能沙发','芝华仕',2000,200,'【定制预售】头等舱 真皮',to_date('20120804','yyyy-mm-dd'),
+ 10,'moveable_jewelry.files/芝华仕真皮功能沙发.jpg'); 
+ delete from es_goods where gid='g067';
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g068','bh010','榻榻米懒骨头沙发床','榻榻米',2000,200,'懒骨头午休沙发床',to_date('20120804','yyyy-mm-dd'),
+ 10,'moveable_jewelry.files/榻榻米懒骨头午休沙发床.jpg'); 
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g069','bh010','乐活时光简易衣柜','乐活时光',2000,200,'加厚韩式单身简易衣柜',to_date('20120804','yyyy-mm-dd'),
+ 10,'moveable_jewelry.files/乐活时光简易衣柜.jpg'); 
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g070','bh010','奥芙情侣戒指 ','奥芙',2000,200,'天生一对 925纯银对戒 ',to_date('20120804','yyyy-mm-dd'),
+ 10,'moveable_jewelry.files/奥芙情侣戒指.jpg'); 
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g071','bh010','艾念925纯银项链','艾念',2000,200,'生日礼物送女友 纯银项链',to_date('20120804','yyyy-mm-dd'),
+ 10,'moveable_jewelry.files/艾念925纯银项链.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g072','bh010','vivieanne水晶项链','vivieanne',2000,200,'城里的月光 毛衣链',to_date('20120804','yyyy-mm-dd'),
+ 10,'moveable_jewelry.files/vivieanne长款水晶项链.jpg'); 
+delete from es_goods where gid='g072';
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g073','bh010','银奥925纯银项链','银奥',2000,200,'正品猫眼石 925纯银 ',to_date('20120804','yyyy-mm-dd'),
+ 10,'moveable_jewelry.files/银奥925纯银项链.jpg'); 
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g074','bh010','瑞诺925纯银耳钉','瑞诺',2000,200,' 韩版银饰',to_date('20120804','yyyy-mm-dd'),
+ 10,'moveable_jewelry.files/瑞诺韩版925纯银耳钉.jpg'); 
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g075','bh010','时尚多层朋克男士手链','朋克',2000,200,'时尚多层 有个性',to_date('20120804','yyyy-mm-dd'),
+ 10,'moveable_jewelry.files/时尚多层朋克男士手链.jpg'); 
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g076','bh010','蓝漫折叠床','蓝漫',2000,200,'加长加宽加固单人床',to_date('20120804','yyyy-mm-dd'),
+ 10,'moveable_jewelry.files/蓝漫折叠床.jpg'); 
+ commit;
+ 
+--汽车用品bh016
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g077','bh016','dvd导航双核数字屏','蓝漫',2000,20,'高清准确',to_date('20120804','yyyy-mm-dd'),
+ 10,'car_accouterment.files/dvd导航双核数字屏.jpg'); 
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g078','bh016','kitty头枕','kitty',200,200,'舒适软和',to_date('20120804','yyyy-mm-dd'),
+ 10,'car_accouterment.files/kitty头枕.jpg'); 
+ 
+ 
+ INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g079','bh016','车用遮阳挡','',2000,200,'一对装',to_date('20120804','yyyy-mm-dd'),
+ 10,'car_accouterment.files/车用遮阳挡一对装.jpg'); 
+ 
+ INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g080','bh016','精品汽车用品座套','',2000,200,'舒适安全',to_date('20120804','yyyy-mm-dd'),
+ 10,'car_accouterment.files/精品汽车用品座套.jpg'); 
+ 
+ INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g082','bh016','刹车灯','本田',100,200,'亮度高',to_date('20120804','yyyy-mm-dd'),
+ 10,'car_accouterment.files/刹车灯.jpg'); 
+ 
+ 
+ 
+ INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g083','bh016','汽车贴纸','',20,200,'高清',to_date('20120804','yyyy-mm-dd'),
+ 10,'car_accouterment.files/汽车贴纸.jpg'); 
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g084','bh016','冬季毛绒座套','',200,200,'舒适安全',to_date('20120804','yyyy-mm-dd'),
+ 10,'car_accouterment.files/冬季毛绒座套.jpg'); 
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g085','bh016','汽车饰品小龙人','',20,200,'真实好看',to_date('20120804','yyyy-mm-dd'),
+ 10,'car_accouterment.files/汽车饰品.jpg'); 
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g086','bh016','汽车电源','丰田',2000,200,'效率高',to_date('20120804','yyyy-mm-dd'),
+ 10,'car_accouterment.files/电源.jpg'); 
+
+commit;
+--玩具文具bh015
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g087','bh015','毛绒玩具公仔','Mymikku',2000,200,'植物大战僵尸毛绒玩具',to_date('20120804','yyyy-mm-dd'),
+ 10,'toyl.files/Mymikku毛绒玩具公仔.jpg'); 
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g088','bh015','泰迪熊大号公仔','泰迪熊',2000,200,'布布熊毛绒玩具',to_date('20120804','yyyy-mm-dd'),
+ 10,'toyl.files/泰迪熊大号公仔.jpg'); 
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g089','bh015','环奇玩具汽车 ','环奇',2000,200,'惯性车玩具车',to_date('20120804','yyyy-mm-dd'),
+ 10,'toyl.files/环奇玩具汽车.jpg'); 
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g090','bh015','加勒比海盗船模型','乐立方',2000,200,'加勒比海盗船模T4005黑珍珠女王复仇号',to_date('20120804','yyyy-mm-dd'),
+ 10,'toyl.files/乐立方模型加勒比海盗船.jpg'); 
+ delete from es_goods where gid='g092';
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g091','bh015','麦咣咣彼得兔毛绒玩具','麦咣咣',2000,200,'光棍节礼物彼得兔',to_date('20120804','yyyy-mm-dd'),
+ 10,'toyl.files/彼得兔毛绒玩具.jpg'); 
+
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g092','bh015','可爱大抱熊林嘉欣熊','摩登贝儿',2000,200,'摩登贝儿泰迪熊',to_date('20120804','yyyy-mm-dd'),
+ 10,'toyl.files/摩登可爱大抱熊林嘉欣熊.jpg'); 
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g093','bh015','悦之恋毛绒兔子公仔','悦之恋',2000,200,'七夕情人节礼物毛绒玩具',to_date('20120804','yyyy-mm-dd'),
+ 10,'toyl.files/悦之恋毛绒兔子公仔.jpg'); 
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g094','bh015','植物大战僵尸毛绒玩具公仔','Mymikku',2000,200,'植物大战僵尸毛绒玩具',to_date('20120804','yyyy-mm-dd'),
+ 10,'toyl.files/Mymikku毛绒玩具公仔.jpg'); 
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g095','bh015','沙漠之鹰玩具手枪','沙漠之鹰',2000,200,'高仿真枪',to_date('20120804','yyyy-mm-dd'),
+ 10,'toyl.files/玩具手枪高仿真枪.jpg'); 
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl) VALUES(
+ 'g096','bh015','良友警用挂斗摩托车 ','良友',2000,200,'合金声光 警车 合金模型',to_date('20120804','yyyy-mm-dd'),
+ 10,'toyl.files/良友警用挂斗摩托车.jpg'); 
+ 
+ commit;
+ 
+ 
+ 

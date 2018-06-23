@@ -1,0 +1,320 @@
+/*==============================================================*/
+/* ɾ������                                                   */
+/*==============================================================*/
+drop table es_protect_pwd purge;
+drop table es_message_board purge;
+drop table es_news purge;
+drop table es_order_detail purge;
+drop table es_order purge;
+drop table es_goods_comment purge;
+drop table es_goods purge;
+drop table es_type purge;
+drop table es_user purge;
+drop table es_manager purge;
+
+drop sequence message_seq;
+create sequence message_seq;
+
+
+/*==============================================================*/
+/* Table: �û���                                                */
+/*==============================================================*/
+create table es_user 
+(
+    userid               varchar2(20)                   primary key,
+    uname                varchar2(20),
+    upassword            varchar2(20),
+    unickname            varchar2(20),
+    usex                 char(2),
+    ubirthday            date,
+    uaddress             varchar2(100),
+    utelephone           varchar2(20),
+    uemail               varchar2(40),
+    utime                date,
+    uStatus				 number
+);
+
+drop sequence user_seq;
+create sequence user_seq;
+
+/*==============================================================*/
+/* Table: ����Ա��                                              */
+/*==============================================================*/
+create table es_manager 
+(
+    mid                  varchar2(10),
+    mname                varchar2(20),
+    mpassword            varchar2(20)
+);
+
+drop sequence manager_seq;
+create sequence manager_seq;
+
+/*==============================================================*/
+/* Table: ��Ʒ���ͱ�                                            */
+/*==============================================================*/
+create table es_type 
+(
+    stid                 varchar2(10)                   not null,
+    stname               varchar2(20),
+    mtname               varchar2(10),
+    constraint PK_ES_TYPE primary key (stid)
+);
+
+drop sequence type_seq;
+create sequence type_seq;
+
+/*==============================================================*/
+/* Table: ��Ʒ��                                                */
+/*==============================================================*/
+create table es_goods 
+(
+    gid                  varchar2(10)                   not null,
+    stid                 varchar2(10),
+    gname                varchar2(20),
+    gbrand		 varchar2(20),
+    gprice               number,
+    gstock               number,
+    gdescribe            varchar2(200),
+    gsell_time           date,
+    gsales               number,
+    gurl		 varchar2(100),
+    constraint PK_ES_GOODS primary key (gid)
+);
+
+drop sequence goods_seq;
+create sequence goods_seq;
+
+/*==============================================================*/
+/* Table: ��Ʒ���۱�                                            */
+/*==============================================================*/
+create table es_goods_comment 
+(
+    nickname            varchar2(20),
+    gid                  varchar2(10),
+    ccomment             varchar2(200),
+    ctime                date
+);
+
+
+/*==============================================================*/
+/* Table: ���԰�                                                */
+/*==============================================================*/
+create table es_message_board 
+(
+    userid               varchar2(10),
+    mbid                 varchar2(20),
+    mbtitle              varchar2(40),
+    mbcontent            varchar2(400),
+    mbtime               date,
+    constraint PK_ES_MESSAGE_BOARD primary key (mbid)
+);
+
+drop sequence message_seq;
+create sequence message_seq;
+
+/*==============================================================*/
+/* Table: ���ű�                                                */
+/*==============================================================*/
+create table es_news 
+(
+    userid               varchar2(10),
+    nid                  varchar2(20),
+    ntitle               varchar2(40),
+    ncontent             varchar2(400),
+    ntime                date,
+    constraint PK_ES_NEWS primary key (nid)
+);
+
+drop sequence news_seq;
+create sequence news_seq;
+
+/*==============================================================*/
+/* Table: ������                                                */
+/*==============================================================*/
+create table es_order 
+(
+    oid                  number                   not null,
+    userid               varchar2(10),
+    otime                date,
+    ototalprice          number,
+    ostatus              number,
+    oaddress             varchar2(100),
+    otelephone           varchar2(20),
+    constraint PK_ES_ORDER primary key (oid)
+);
+
+drop sequence order_seq;
+create sequence order_seq;
+
+/*==============================================================*/
+/* Table: ������ϸ��                                            */
+/*==============================================================*/
+create table es_order_detail 
+(
+    oid                  number,
+    gid                  varchar2(10),
+    gname                varchar2(20),
+    gnumber              number,
+    gprice               number,
+    gsubtotal            number
+);
+
+/*==============================================================*/
+/* Table: 密码保护问题                                            */
+/*==============================================================*/
+create table es_protect_pwd
+(
+    uname   	varchar2(20),
+    question 	varchar2(50),
+    answer   	varchar2(50)	);
+
+drop sequence es_protect_pwd_seq;
+create sequence es_protect_pwd_seq;
+
+alter table es_goods
+   add constraint FK_ES_GOODS_REFERENCE_ES_TYPE foreign key (stid)
+      references es_type (stid);
+
+alter table es_message_board
+   add constraint FK_ES_MESSA_REFERENCE_ES_USER foreign key (userid)
+      references es_user (userid);
+
+alter table es_news
+   add constraint FK_ES_NEWS_REFERENCE_ES_USER foreign key (userid)
+      references es_manager (mid);
+
+alter table es_order
+   add constraint FK_ES_ORDER_REFERENCE_ES_USER foreign key (userid)
+      references es_user (userid);
+
+alter table es_order_detail
+   add constraint FK_ES_ORDER_REFERENCE_ES_ORDER foreign key (oid)
+      references es_order (oid);
+
+alter table es_order_detail
+   add constraint FK_ES_ORDER_REFERENCE_ES_GOODS foreign key (gid)
+      references es_goods (gid);
+
+alter table es_goods_comment
+   add constraint FK_ES_GOODS_REFERENCE_ES_USER foreign key (unickname)
+      references es_user (unickname);
+
+alter table es_goods_comment
+   add constraint FK_ES_GOODS_REFERENCE_ES_GOODS foreign key (gid)
+      references es_goods (gid);
+      
+
+insert into es_user(userid,uname,upassword,unickname,usex,ubirthday,uaddress,utelephone,uemail,utime,uStatus)
+	values(user_seq.nextval,'yxf2008','111111','漆黑之牙','男',to_date('2000-01-01','yyyy-mm-dd'),'湖南省长沙市','1111111111111','111111@111.com',sysdate,1);
+insert into es_user(userid,uname,upassword,unickname,usex,ubirthday,uaddress,utelephone,uemail,utime,uStatus)
+	values(user_seq.nextval,'yxf2009','111111','深渊之刃','男',to_date('2000-01-01','yyyy-mm-dd'),'湖南省长沙市','1111111111111','111111@111.com',sysdate,1);
+insert into es_user(userid,uname,upassword,unickname,usex,ubirthday,uaddress,utelephone,uemail,utime,uStatus)
+	values(user_seq.nextval,'yxf2010','111111','辉耀','男',to_date('2000-01-01','yyyy-mm-dd'),'湖南省长沙市','1111111111111','111111@111.com',sysdate,1);  
+  
+insert into es_manager(mid,mname,mpassword) values(manager_seq.nextval,'执政官','111111');
+      
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('b001','图书','图书音像');
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('b002','音乐','图书音像');
+
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('bh003','运动健康','百货');
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('bh004','服装','百货');
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('bh005','家居','百货');
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('bh006','美妆','百货');
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('bh007','母婴','百货');
+ INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('bh008','食品','百货');
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('bh009','手机数码','百货');
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('bh010','家居首饰','百货');
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('bh011','手表饰品','百货');
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('bh012','鞋包','百货');
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('bh013','家电','百货');
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('bh014','电脑办公','百货');
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('bh015','玩具文具','百货');
+INSERT INTO es_type(stid,stname,mtname) 
+   VALUES('bh016','汽车用品','百货');
+   
+   
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g001','b001','人生','',20,1000,'这是一本好书',to_date('20120404','yyyy-mm-dd'),100,'books/人生.jpg');
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g002','b001','谁在谋杀中国经济','',20,500,'这是一本好书',to_date('20120404','yyyy-mm-dd'),100,'books/谁在谋杀中国经济.jpg');
+   
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g003','b001','恋之风华','',20,1000,'这是一本好书',to_date('20120404','yyyy-mm-dd'),100,'books/恋之风华.jpg');
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g004','b001','皇帝柠檬','',20,500,'这是一本好书',to_date('20120404','yyyy-mm-dd'),100,'books/皇帝的柠檬.jpg');
+   
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g005','b001','江湖','',20,1000,'这是一本好书',to_date('20120404','yyyy-mm-dd'),100,'books/江湖.jpg');
+   
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g006','b001','我们的杜拉拉','',20,1000,'这是一本好书',to_date('20120404','yyyy-mm-dd'),100,'books/我们的杜拉拉.jpg');
+   
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g007','b001','车主省钱...','',20,1000,'这是一本好书',to_date('20120404','yyyy-mm-dd'),100,'books/车主省钱.jpg');
+   
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g008','b001','云计算','',20,1000,'这是一本好书',to_date('20120404','yyyy-mm-dd'),100,'books/走进云计算.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g009','b001','网络配置与应用','',50,1000,'这是一本好书',to_date('20120404','yyyy-mm-dd'),100,'books/网络配置与应用.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g0010','b001','网络控制技术','',40,1000,'这是一本好书',to_date('20120404','yyyy-mm-dd'),100,'books/网络控制技术.jpg');
+   
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g022','bh004','时尚牛仔裤','法姿韩版',200,1000,'物美价廉',to_date('20120404','yyyy-mm-dd'),100,'5.jpg');
+ 
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g023','bh005','乐扣保鲜盒','乐扣',200,10,'物美价廉',to_date('20120404','yyyy-mm-dd'),100,'2.jpg');
+   
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g024','bh006','欧珀莱均衡保湿四件套','欧珀莱',200,100,'物美价廉',to_date('20120404','yyyy-mm-dd'),100,'3.jpg');   
+   
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g025','bh007','奶粉','多美滋',50,1000,'物美价廉',to_date('20120404','yyyy-mm-dd'),100,'10.jpg');   
+   
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g026','bh008','巧克力','法国德菲丝',20,1000,'物美价廉',to_date('20120404','yyyy-mm-dd'),100,'1.jpg');   
+  
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g034','bh009','笔记本电脑','联想',4000,20,'物美价廉',to_date('20120404','yyyy-mm-dd'),100,'4.jpg');  
+  
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g027','bh010','水晶吊坠','施华洛世奇',1000,100,'物美价廉',to_date('20120404','yyyy-mm-dd'),100,'6.jpg');  
+
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g029','bh012','拉杆箱','达派',20,300,'物美价廉',to_date('20120404','yyyy-mm-dd'),100,'8.jpg');
+  
+INSERT INTO es_goods(gid,stid,gname,gbrand,gprice,gstock,gdescribe,gsell_time,gsales,gurl)  
+ VALUES('g030','bh013','电饼铛','利仁',20,100,'物美价廉',to_date('20120404','yyyy-mm-dd'),100,'7.jpg');  
+ 
+ 
+insert into es_message_board values('2',message_seq.nextval,'等待','在商城买了很多东西，还好....',sysdate);
+insert into es_message_board values('2',message_seq.nextval,'求速度','我购买的东西怎么还没来啊',sysdate);
+insert into es_message_board values('2',message_seq.nextval,'求速度','我购买的东西怎么还没来啊',sysdate);
+insert into es_message_board values('2',message_seq.nextval,'求速度','我购买的东西怎么还没来啊',sysdate); 
+
+insert into es_news values('2','100','促销公告','五一大酬宾，全场五折',to_date('2012-5-1','yyyy-mm-dd'));
+insert into es_news values('2','101','热门商品','iphone8在本商城热卖，信不信由你',to_date('2012-5-3','yyyy-mm-dd'));
+insert into es_news values('2','102','促销公告','最后一天，五一大酬宾，全场五折',to_date('2012-5-7','yyyy-mm-dd'));
+insert into es_news values('2','103','疯狂大甩卖','由于换季节，所以全场夏装买一送一',to_date('2012-9-11','yyyy-mm-dd'));
+insert into es_news values('2','104','最新动态','最近网上流行中奖诈骗，希望大家不要上当受骗',to_date('2012-11-1','yyyy-mm-dd'));
+

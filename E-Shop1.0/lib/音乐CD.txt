@@ -1,0 +1,34 @@
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) 
+VALUES(goods_seq.nextval,'b002','红楼梦主题歌曲','芒果',50,100,'回味经典，带你走进旋律世界',SYSDATe,203,'music/[原装正版]红楼梦 87原版电视剧主题歌曲1CD 陈力 王洁实 王立平.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) 
+VALUES(goods_seq.nextval,'b002','格莱美的喝彩','芒果',50,100,'回味经典，带你走进旋律世界',SYSDATe,203,'music/《Grammy Nominees 2012 格莱美的喝彩》 22首2012年度最畅销歌曲.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) 
+VALUES(goods_seq.nextval,'b002','汽车音乐','芒果',50,100,'回味经典，带你走进旋律世界',SYSDATe,203,'music/【正版】黑胶CD 汽车音乐：奥斯卡百年 冠军歌曲(2HDCD).jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) 
+VALUES(goods_seq.nextval,'b002','春天里的摇滚','芒果',50,100,'回味经典，带你走进旋律世界',SYSDATe,203,'music/9.9元秒杀 春天里的摇滚 摇滚歌曲 车载cd 汽车CD碟片 发烧 2CD.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) 
+VALUES(goods_seq.nextval,'b002','邓丽君','芒果',50,100,'回味经典，带你走进旋律世界',SYSDATe,203,'music/邓丽君 dvd 邓丽君 不老的传奇 5DVD 歌曲经典珍藏.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) 
+VALUES(goods_seq.nextval,'b002','李谷一中国抒情歌','芒果',50,100,'回味经典，带你走进旋律世界',SYSDATe,203,'music/碟圣正版《隽永留声歌唱家系列李谷一中国抒情歌曲选辑》1CD.jpg');
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) 
+VALUES(goods_seq.nextval,'b002','王菲13首','芒果',50,100,'回味经典，带你走进旋律世界',SYSDATe,203,'music/精选王菲13首最靓声最动听歌曲 试音王菲2 经典王菲 DXD 1CD.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) 
+VALUES(goods_seq.nextval,'b002','卢广仲','芒果',50,100,'回味经典，带你走进旋律世界',SYSDATe,203,'music/卢广仲第四张创作专辑「有吉他的流行歌曲」前十名预订包邮+海报.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) 
+VALUES(goods_seq.nextval,'b002','王二妮 2DVD9 MTV','芒果',50,100,'回味经典，带你走进旋律世界',SYSDATe,203,'music/王二妮 2DVD9 MTV原人原唱 陕北歌后+精选歌曲 正版dvd光盘.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) 
+VALUES(goods_seq.nextval,'b002','魏晨《千方百计》','芒果',50,100,'回味经典，带你走进旋律世界',SYSDATe,203,'music/魏晨《千方百计》 CD+海报+写真卡片12张+隐藏歌曲.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) 
+VALUES(goods_seq.nextval,'b002','迪士尼 闪耀六十年','芒果',50,100,'回味经典，带你走进旋律世界',SYSDATe,203,'music/正版 迪士尼 闪耀六十年 迪斯尼歌曲60年经典全集 5CD 特惠套装.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) 
+VALUES(goods_seq.nextval,'b002','李玉刚 四美图','芒果',50,100,'回味经典，带你走进旋律世界',SYSDATe,203,'music/正版 李玉刚 四美图 2011演唱会 中国歌剧舞剧院原创歌曲诗2DVD.jpg');

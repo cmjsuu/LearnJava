@@ -1,0 +1,16 @@
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh006','分装喷瓶50CC','卓京',20,100,'不是每一瓶美妆瓶都能化出卓京唐姐',SYSDATe,203,'9927B喷雾瓶 瓶子 透明瓶 美妆小工具 随身携带 分装喷瓶50CC.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh006','彩妆套装组合12件','卓京',20,100,'不是每一瓶美妆瓶都能化出卓京唐姐',SYSDATe,203,'彩妆套装组合12件 正品彩妆盒彩妆盘 初学者全套化妆品美妆工具.jpg');
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh006','化妆高级卫生','卓京',20,100,'不是每一瓶美妆瓶都能化出卓京唐姐',SYSDATe,203,'化妆高级卫生 棉棒 棉签木海绵美妆双头必备工具 100支包装.jpg');
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh006','睫毛夹','卓京',20,100,'不是每一瓶美妆瓶都能化出卓京唐姐',SYSDATe,203,'睫毛夹 美妆工具 化妆必备 633超广角睫毛夹 眼部化妆夹 眼睫毛夹.jpg');
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh006','美妆工具','卓京',20,100,'不是每一瓶美妆瓶都能化出卓京唐姐',SYSDATe,203,'乐蜂网 正品静佳Jcode丝柔优质化妆棉150片 纯棉无刺激 美妆必备.jpg');
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh006','美妆工具','卓京',20,100,'不是每一瓶美妆瓶都能化出卓京唐姐',SYSDATe,203,'美妆工具！Bobbi brown 波比布朗专业卸妆棉200片 一等棉配袋.jpg');
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh006','精细修眉剪刀','卓京',20,100,'不是每一瓶美妆瓶都能化出卓京唐姐',SYSDATe,203,'美妆工具~品味推荐 小剪刀 精细修眉剪刀 世界上最好的修眉剪.jpg');
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh006','凝养唇膏口红','卓京',20,100,'不是每一瓶美妆瓶都能化出卓京唐姐',SYSDATe,203,'特价包邮欧莱雅美妆唇彩炫亮凝养唇膏口红B301-B500色号齐及5字系.jpg');
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh006','魔力吸油纸','卓京',20,100,'不是每一瓶美妆瓶都能化出卓京唐姐',SYSDATe,203,'薇比美妆工具魔力吸油纸 (200片) 爆款包邮 吸油面纸 明星 正品.jpg');
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh006','热销隐形双面胶','卓京',20,100,'不是每一瓶美妆瓶都能化出卓京唐姐',SYSDATe,203,'小猪家 超隐形 玛朵思黛 热销隐形双面胶 双眼皮贴 72枚美妆必备.jpg');
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh006','美妆工具','卓京',20,100,'不是每一瓶美妆瓶都能化出卓京唐姐',SYSDATe,203,'友谊牌卷笔刀~美妆工具(眉笔 眼线笔均可) 塞子可拿掉.jpg');
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh006','葫芦海棉','卓京',20,100,'不是每一瓶美妆瓶都能化出卓京唐姐',SYSDATe,203,'正品 葫芦海棉 水滴棉 海绵粉扑 散粉 专业美妆葫芦粉扑 可批发.jpg');
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) VALUES(goods_seq.nextval,'bh006','玛莉安不锈钢耳挖','卓京',20,100,'不是每一瓶美妆瓶都能化出卓京唐姐',SYSDATe,203,'正品 玛莉安不锈钢耳挖.耳勺MA-9150专业化妆.美妆工具 清洁耳朵.jpg');
+
+select *from es_goods where stid='bh006';

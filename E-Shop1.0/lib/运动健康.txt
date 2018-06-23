@@ -1,0 +1,36 @@
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) 
+VALUES(goods_seq.nextval,'bh007','艾美健体重秤 ','尚美',50,100,'自信最美，尚美让你非一般的自信',SYSDATe,303,'yundongjiankang/艾美健体重秤 精准电子人体秤 健康秤 运动减肥必备电子秤 正品.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) 
+VALUES(goods_seq.nextval,'bh007','保定铁球健','尚美',50,100,'自信最美，尚美让你非一般的自信',SYSDATe,303,'yundongjiankang/保定铁球健身球手球中老年保健球实用健康球运动按摩球米黄玉石球.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) 
+VALUES(goods_seq.nextval,'bh007','室内单杠 ','尚美',50,100,'自信最美，尚美让你非一般的自信',SYSDATe,303,'yundongjiankang/二代室内单杠 家庭有氧运动锻炼 家用健身器材瘦身健康减肥健身.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) 
+VALUES(goods_seq.nextval,'bh007','健康賽哑铃 ','尚美',50,100,'自信最美，尚美让你非一般的自信',SYSDATe,303,'yundongjiankang/健身器材家用钢球实心63mm健身铁球2公斤锻炼臂力运动健康賽哑铃.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) 
+VALUES(goods_seq.nextval,'bh007','计数跳绳 ','尚美',50,100,'自信最美，尚美让你非一般的自信',SYSDATe,303,'yundongjiankang/健身装备运动伙伴正品单人跳绳减肥跳绳健康跳绳计数跳绳MP189.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) 
+VALUES(goods_seq.nextval,'bh007','运动护腰 ','尚美',50,100,'自信最美，尚美让你非一般的自信',SYSDATe,303,'yundongjiankang/凯威0624 运动护腰 弹簧条功能减肥束腰 专业健康护理腰带.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) 
+VALUES(goods_seq.nextval,'bh007','肘护套 ','尚美',50,100,'自信最美，尚美让你非一般的自信',SYSDATe,303,'yundongjiankang/美国LP 护肘 奈米竹炭保健型肘护套LP989 纳米防敏防挫伤健康运动.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) 
+VALUES(goods_seq.nextval,'bh007','跑步机 ','尚美',50,100,'自信最美，尚美让你非一般的自信',SYSDATe,303,'yundongjiankang/跑步机 按摩机 老少皆宜 运动健康 paobuji.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) 
+VALUES(goods_seq.nextval,'bh007','计数跳绳运动伙伴 ','尚美',50,100,'自信最美，尚美让你非一般的自信',SYSDATe,303,'yundongjiankang/天猫正品 计数跳绳运动伙伴 MP172单人跳绳减肥跳绳健康跳绳.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) 
+VALUES(goods_seq.nextval,'bh007','高档哑铃架  ','尚美',50,100,'自信最美，尚美让你非一般的自信',SYSDATe,303,'yundongjiankang/哑铃架 万年青 高档哑铃架 两层.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) 
+VALUES(goods_seq.nextval,'bh007','健腹板 ','尚美',50,100,'自信最美，尚美让你非一般的自信',SYSDATe,303,'yundongjiankang/正品双超 运动健康仰卧板 健腹板 SC-AK001.jpg');
+
+INSERT INTO es_goods(GID,STID,GNAME,GBRAND,GPRICE,GSTOCK,GDESCRIBE,GSELL_TIME,GSALES,GURL) 
+VALUES(goods_seq.nextval,'bh007','握力器','尚美',50,100,'自信最美，尚美让你非一般的自信',SYSDATe,303,'yundongjiankang/正品专业握力器.jpg');
